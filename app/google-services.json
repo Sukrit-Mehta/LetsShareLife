@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "818798675614",
+    "firebase_url": "https://lifeshare-d961b.firebaseio.com",
+    "project_id": "lifeshare-d961b",
+    "storage_bucket": "lifeshare-d961b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:818798675614:android:b60654f04e86f57a",
+        "android_client_info": {
+          "package_name": "com.example.medicinereminder.lifeshare"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "818798675614-f0nkj4mu085mrt4si3g11jkm5kh6cojn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.medicinereminder.lifeshare",
+            "certificate_hash": "5a4c7908378045b2dffbe13243254b395544cc0f"
+          }
+        },
+        {
+          "client_id": "818798675614-eesmrpjpmj6vm5snl0q9ni0j7494hshc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBDfWqzhm9xS52mnNQeU035Wl4jdWf8ZEg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "818798675614-eesmrpjpmj6vm5snl0q9ni0j7494hshc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
