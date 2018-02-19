@@ -5,7 +5,10 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.medicinereminder.lifeshare.Models.RequiredModel;
 import com.example.medicinereminder.lifeshare.R;
@@ -37,9 +40,34 @@ public class RequiredRecyclerAdapter extends RecyclerView.Adapter<RequiredRecycl
     @Override
     public void onBindViewHolder(RequiredViewHolder holder, int position) {
         RequiredModel thisModel = arrayList.get(position);
-        holder.userName.setText(thisModel.getUserName());
-        holder.userAddress.setText(thisModel.getUserAddress());
-        holder.userBloodGroup.setText(thisModel.getUserBloodGroup());
+        holder.userDetails.setText(thisModel.getUserName() + " requires "+
+                        thisModel.getUserUnitsBlood() +" units of "+ thisModel.getUserBloodGroup() +
+                        " Blood Group at "+" Ahmedabad, +91 96 2436 0600, A-6 Safal Profitaire,Corporate Road, ABB Ahmedabad office;5th Floor. Bangalore, +91 80 2294 6155, Rajajinagar Industrial Estate, KSSIDC IT/BT park.");
+        holder.endDate.setText(thisModel.getUserEndDate());
+        holder.linDropIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Replace with your own action", Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.linRaise.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Replace with your own action", Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.linShare.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Replace with your own action", Toast.LENGTH_SHORT).show();
+            }
+        });
+        holder.action.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(context, "Replace with your own action", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override
@@ -49,14 +77,20 @@ public class RequiredRecyclerAdapter extends RecyclerView.Adapter<RequiredRecycl
 
     class RequiredViewHolder extends RecyclerView.ViewHolder {
         View testView;
-        TextView userName;
-        TextView userAddress;
-        TextView userBloodGroup;
+        TextView userDetails;
+        TextView endDate;
+        LinearLayout linDropIn;
+        LinearLayout linRaise;
+        LinearLayout linShare;
+        ImageView action;
         public RequiredViewHolder(View itemView) {
             super(itemView);
-            userName = itemView.findViewById(R.id.tvPersonName);
-            userAddress  = itemView.findViewById(R.id.tvPersonAddress);
-            userBloodGroup = itemView.findViewById(R.id.tvBloodGroup);
+            userDetails = itemView.findViewById(R.id.userDetails);
+            linDropIn = itemView.findViewById(R.id.linDropIn);
+            linRaise = itemView.findViewById(R.id.linRaise);
+            linShare = itemView.findViewById(R.id.linShare);
+            endDate = itemView.findViewById(R.id.endDate);
+            action = itemView.findViewById(R.id.action);
             testView=itemView;
         }
     }

@@ -27,7 +27,6 @@ public class FirstFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -39,9 +38,10 @@ public class FirstFragment extends Fragment {
         {
             arrayList.add(new RequiredModel("Name "+(i+1),"Address",
                     "Hospital","898088089",
-                    "B+","test"+(i+1)+"@gmail.com"));
+                    "B+","test"+(i+1)+"@gmail.com",(i+1)+"","02-03-2018",
+                    "08-03-2018"));
         }
-        //setRecyclerView(arrayList);
+        setRecyclerView(arrayList);
         return fragmentRootView;
     }
     public void setRecyclerView(ArrayList<RequiredModel> arrayList)

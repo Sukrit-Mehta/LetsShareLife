@@ -12,17 +12,47 @@ public class RequiredModel {
     String userContactNumber;
     String userBloodGroup;
     String userEmailAddress;
+    String userUnitsBlood;
+    String userStartDate;
+    String userEndDate;
 
     public RequiredModel() {
     }
 
-    public RequiredModel(String userName, String userAddress, String userHospital, String userContactNumber, String userBloodGroup, String userEmailAddress) {
+    public RequiredModel(String userName, String userAddress, String userHospital, String userContactNumber, String userBloodGroup, String userEmailAddress, String userUnitsBlood, String userStartDate, String userEndDate) {
         this.userName = userName;
         this.userAddress = userAddress;
         this.userHospital = userHospital;
         this.userContactNumber = userContactNumber;
         this.userBloodGroup = userBloodGroup;
         this.userEmailAddress = userEmailAddress;
+        this.userUnitsBlood = userUnitsBlood;
+        this.userStartDate = userStartDate;
+        this.userEndDate = userEndDate;
+    }
+
+    public String getUserStartDate() {
+        return userStartDate;
+    }
+
+    public void setUserStartDate(String userStartDate) {
+        this.userStartDate = userStartDate;
+    }
+
+    public String getUserEndDate() {
+        return userEndDate;
+    }
+
+    public void setUserEndDate(String userEndDate) {
+        this.userEndDate = userEndDate;
+    }
+
+    public String getUserUnitsBlood() {
+        return userUnitsBlood;
+    }
+
+    public void setUserUnitsBlood(String userUnitsBlood) {
+        this.userUnitsBlood = userUnitsBlood;
     }
 
     public String getUserName() {
