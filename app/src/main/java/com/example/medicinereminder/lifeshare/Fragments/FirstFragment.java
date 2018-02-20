@@ -39,7 +39,7 @@ public class FirstFragment extends Fragment {
             arrayList.add(new RequiredModel("Name "+(i+1),"Address",
                     "Hospital","898088089",
                     "B+","test"+(i+1)+"@gmail.com",(i+1)+"","02-03-2018",
-                    "08-03-2018"));
+                    "08-03-2018","password"));
         }
         setRecyclerView(arrayList);
         return fragmentRootView;

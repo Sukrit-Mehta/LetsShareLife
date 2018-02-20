@@ -15,11 +15,12 @@ public class RequiredModel {
     String userUnitsBlood;
     String userStartDate;
     String userEndDate;
+    String userPassword;
 
     public RequiredModel() {
     }
 
-    public RequiredModel(String userName, String userAddress, String userHospital, String userContactNumber, String userBloodGroup, String userEmailAddress, String userUnitsBlood, String userStartDate, String userEndDate) {
+    public RequiredModel(String userName, String userAddress, String userHospital, String userContactNumber, String userBloodGroup, String userEmailAddress, String userUnitsBlood, String userStartDate, String userEndDate, String userPassword) {
         this.userName = userName;
         this.userAddress = userAddress;
         this.userHospital = userHospital;
@@ -29,6 +30,15 @@ public class RequiredModel {
         this.userUnitsBlood = userUnitsBlood;
         this.userStartDate = userStartDate;
         this.userEndDate = userEndDate;
+        this.userPassword = userPassword;
+    }
+
+    public String getUserPassword() {
+        return userPassword;
+    }
+
+    public void setUserPassword(String userPassword) {
+        this.userPassword = userPassword;
     }
 
     public String getUserStartDate() {

@@ -23,7 +23,10 @@ public class SplashScreenActivity extends AppCompatActivity {
         Runnable runnable=new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(SplashScreenActivity.this,HomeActivity.class));
+                Intent intent = new Intent(SplashScreenActivity.this,LoginActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                finish();
             }
         };
         handler.postDelayed(runnable,2000);
