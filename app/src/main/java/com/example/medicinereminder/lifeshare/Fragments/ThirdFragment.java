@@ -26,7 +26,6 @@ import java.util.ArrayList;
  */
 public class ThirdFragment extends Fragment {
 
-
     DatabaseReference mDatabaseUsers;
     RecyclerView thirdRV;
     UsersRecyclerAdapter usersRecyclerAdapter;

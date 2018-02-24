@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:818798675614:android:b60654f04e86f57a",
         "android_client_info": {
-          "package_name": "com.example.medicinereminder.lifeshare"
+          "package_name": "com.sukritmehta.lifeshare"
         }
       },
       "oauth_client": [
@@ -18,7 +18,7 @@
           "client_id": "818798675614-f0nkj4mu085mrt4si3g11jkm5kh6cojn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.example.medicinereminder.lifeshare",
+            "package_name": "com.sukritmehta.lifeshare",
             "certificate_hash": "5a4c7908378045b2dffbe13243254b395544cc0f"
           }
         },
