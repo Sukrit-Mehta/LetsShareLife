@@ -1,6 +1,8 @@
 package com.example.medicinereminder.lifeshare.Activities;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.GravityCompat;
@@ -11,9 +13,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.medicinereminder.lifeshare.Adapters.ViewPagerAdapter;
 import com.example.medicinereminder.lifeshare.R;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class HomeActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
@@ -21,13 +27,43 @@ public class HomeActivity extends AppCompatActivity
     ViewPagerAdapter viewPagerAdapter;
     ViewPager viewPager;
     TabLayout tabLayout;
+    FloatingActionButton fabDonateBlood, fabRequestBlood;
+    DatabaseReference mDatabaseNeeds,mDatabaseUsers;
+    String uid,bloodGroup;
+    FirebaseAuth mAuth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
+
+        mAuth = FirebaseAuth.getInstance();
+        uid = mAuth.getCurrentUser().getUid().toString();
+
+        mDatabaseNeeds = FirebaseDatabase.getInstance().getReference().child("Needs");
+        mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+        fabRequestBlood = findViewById(R.id.fabRequestBlood);
+        fabDonateBlood = findViewById(R.id.fabDonateBlood);
+
+        fabRequestBlood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(HomeActivity.this,RequestBloodActivity.class);
+                intent.putExtra("id",uid);
+                startActivity(intent);
+            }
+        });
+
+        fabDonateBlood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+            }
+        });
 
         viewPager = findViewById(R.id.viewPager);
         viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
@@ -36,13 +72,13 @@ public class HomeActivity extends AppCompatActivity
         tabLayout.setupWithViewPager(viewPager);
 
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
     }
 

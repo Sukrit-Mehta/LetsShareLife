@@ -4,7 +4,7 @@ package com.example.medicinereminder.lifeshare.Models;
  * Created by sukrit on 20/2/18.
  */
 
-public class RequiredModel {
+public class Required {
 
     String userName;
     String userAddress;
@@ -17,10 +17,10 @@ public class RequiredModel {
     String userEndDate;
     String userPassword;
 
-    public RequiredModel() {
+    public Required() {
     }
 
-    public RequiredModel(String userName, String userAddress, String userHospital, String userContactNumber, String userBloodGroup, String userEmailAddress, String userUnitsBlood, String userStartDate, String userEndDate, String userPassword) {
+    public Required(String userName, String userAddress, String userHospital, String userContactNumber, String userBloodGroup, String userEmailAddress, String userUnitsBlood, String userStartDate, String userEndDate, String userPassword) {
         this.userName = userName;
         this.userAddress = userAddress;
         this.userHospital = userHospital;

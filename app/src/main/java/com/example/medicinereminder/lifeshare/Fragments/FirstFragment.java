@@ -9,11 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.medicinereminder.lifeshare.Adapters.RequiredRecyclerAdapter;
-import com.example.medicinereminder.lifeshare.Models.RequiredModel;
+import com.example.medicinereminder.lifeshare.Adapters.NeedsRecyclerAdapter;
+import com.example.medicinereminder.lifeshare.Models.Needs;
 import com.example.medicinereminder.lifeshare.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,6 +28,8 @@ public class FirstFragment extends Fragment {
 
     RecyclerView firstRV;
     View fragmentRootView;
+    DatabaseReference mDatabaseRequests;
+    NeedsRecyclerAdapter needsRecyclerAdapter;
 
     public FirstFragment() {
         // Required empty public constructor
@@ -33,21 +41,40 @@ public class FirstFragment extends Fragment {
         // Inflate the layout for this fragment
         fragmentRootView = inflater.inflate(R.layout.fragment_first, container, false);
         firstRV = fragmentRootView.findViewById(R.id.recycler_view_first);
-        ArrayList<RequiredModel> arrayList = new ArrayList<>();
-        for(int i=0;i<10;i++)
-        {
-            arrayList.add(new RequiredModel("Name "+(i+1),"Address",
-                    "Hospital","898088089",
-                    "B+","test"+(i+1)+"@gmail.com",(i+1)+"","02-03-2018",
-                    "08-03-2018","password"));
-        }
+
+        LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
+        firstRV.setLayoutManager(linearLayoutManager);
+    /*    linearLayoutManager.setReverseLayout(true);
+        linearLayoutManager.setStackFromEnd(true);*/
+
+        mDatabaseRequests = FirebaseDatabase.getInstance().getReference().child("Needs");
+        final ArrayList<Needs> arrayList = new ArrayList<>();
+        mDatabaseRequests.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                arrayList.clear();
+                for(DataSnapshot needSnapshot : dataSnapshot.getChildren())
+                {
+                    Needs needs = needSnapshot.getValue(Needs.class);
+                    arrayList.add(needs);
+                }
+                Collections.reverse(arrayList);
+                needsRecyclerAdapter = new NeedsRecyclerAdapter(arrayList,getActivity());
+                firstRV.setAdapter(needsRecyclerAdapter);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
         setRecyclerView(arrayList);
         return fragmentRootView;
     }
-    public void setRecyclerView(ArrayList<RequiredModel> arrayList)
+    public void setRecyclerView(ArrayList<Needs> arrayList)
     {
         firstRV.setLayoutManager(new LinearLayoutManager(getContext()));
-        firstRV.setAdapter(new RequiredRecyclerAdapter(arrayList,getContext()));
+        firstRV.setAdapter(new NeedsRecyclerAdapter(arrayList,getContext()));
     }
 
 }

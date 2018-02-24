@@ -11,6 +11,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.example.medicinereminder.lifeshare.Models.Request;
+import com.example.medicinereminder.lifeshare.Models.UserDetails;
 import com.example.medicinereminder.lifeshare.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -21,23 +23,27 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.iid.FirebaseInstanceId;
 
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase, mUserDatabase;
     TextInputLayout tvName, tvEmail, tvAddress, tvPassword;
-    String name, email, address, bloodGroup, password;
+    String name, email, address, bloodGroup, password, hospitalAddress,donationCount,receivedCount;
     String uid, deviceToken;
     Button mCreateButton;
 
     ProgressDialog progressDialog;
+    ArrayList<Map<String,Request>> arrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+
+        arrayList=new ArrayList<>();
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -79,24 +85,29 @@ public class RegisterActivity extends AppCompatActivity {
                             deviceToken = FirebaseInstanceId.getInstance().getToken();
                             mUserDatabase = mDatabase.child("Users").child(uid);
 
-                            HashMap<String, String> hashMap = new HashMap<>();
-                            hashMap.put("name", name);
-                            hashMap.put("email", email);
-                            hashMap.put("address", address);
-                            hashMap.put("blood_group", bloodGroup);
-                            hashMap.put("password", password);
-                            hashMap.put("device_token", deviceToken);
+                            UserDetails userDetails = new UserDetails(name,email,address,address,
+                                                        bloodGroup,password,deviceToken,donationCount,
+                                                        receivedCount,"default",
+                                                        "default",arrayList);
 
-                            mUserDatabase.setValue(hashMap)
+                            mUserDatabase.setValue(userDetails)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
+                                                String current_user_id=mAuth.getCurrentUser().getUid();
+                                                String deviceToken= FirebaseInstanceId.getInstance().getToken();
+                                                mUserDatabase.child("device_token").setValue(deviceToken);
                                                 Toast.makeText(RegisterActivity.this, "You have successfully registered", Toast.LENGTH_SHORT).show();
                                                 Intent mainIntent = new Intent(RegisterActivity.this, HomeActivity.class);
                                                 mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                                 startActivity(mainIntent);
                                                 finish();
+                                                progressDialog.dismiss();
+                                            }
+                                            else {
+                                                Toast.makeText(RegisterActivity.this, "Something went wrong", Toast.LENGTH_SHORT).show();
+                                                progressDialog.dismiss();
                                             }
                                         }
                                     });

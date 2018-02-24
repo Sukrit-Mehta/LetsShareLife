@@ -28,7 +28,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".Activities.LoginActivity" />
-        <activity android:name=".Activities.RegisterActivity"></activity>
+        <activity android:name=".Activities.RegisterActivity" />
+        <activity android:name=".Activities.RequestBloodActivity" />
+        <activity android:name=".Activities.MatchingBloodActivity" />
+        <activity android:name=".Activities.AllUsersActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.medicinereminder.lifeshare.Activities.RequestBloodActivity">
+
+    <include layout="@layout/app_bar_layout"
+        android:id="@+id/requestToolbar"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Personal Details"
+        android:layout_below="@id/requestToolbar"
+        android:id="@+id/tvDetails"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/tvDetails"
+        android:id="@+id/view1"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/darker_gray"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:layout_below="@+id/view1"
+        android:id="@+id/LLName">
+
+        <TextView
+            android:id="@+id/tvName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="Name" />
+
+        <EditText
+            android:id="@+id/etName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.4"
+            android:text="ABC" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/LLAddress"
+        android:layout_below="@+id/LLName"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/tvAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="Address" />
+
+        <EditText
+            android:id="@+id/etAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.4"
+            android:text="XYZ" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:id="@+id/LLNumber"
+        android:layout_below="@+id/LLAddress">
+
+        <TextView
+            android:id="@+id/tvNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="Contact Number" />
+
+        <EditText
+            android:id="@+id/etNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.4"
+            android:inputType="number"
+            android:text="XYZ" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:weightSum="2"
+        android:id="@+id/LLHospitalName"
+        android:layout_below="@+id/LLNumber">
+
+        <TextView
+            android:id="@+id/tvHospital"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="Hospital Name" />
+
+        <EditText
+            android:id="@+id/etHospitalAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.4" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Blood Group Details"
+        android:id="@+id/tvBloodGroupDetails"
+        android:layout_below="@+id/LLHospitalName"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:layout_below="@+id/tvBloodGroupDetails"
+        android:id="@+id/view2"
+        android:layout_marginBottom="10dp"
+        android:background="@android:color/darker_gray"></View>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:id="@+id/LLBloodGroup"
+        android:layout_below="@+id/view2">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="Blood Group"
+            android:id="@+id/tvBloodGroup"/>
+        <Spinner
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.4"
+            android:id="@+id/spinnerBloodGroup"></Spinner>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:weightSum="2"
+        android:id="@+id/LLBloodUnits"
+        android:layout_below="@+id/LLBloodGroup">
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="0.6"
+            android:text="Blood Units"
+            android:id="@+id/tvBloodUnits"/>
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.4"
+            android:id="@+id/etBloodUnits"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_below="@+id/LLBloodUnits">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Required Upto"
+            android:id="@+id/tvRequiredUpto"/>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Pick date"
+            android:id="@+id/pickDate"
+            android:layout_marginStart="32dp"
+            android:background="@color/colorPrimary"
+            android:textColor="#ffffff"/>
+    </LinearLayout>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="SUBMIT"
+        android:textSize="16sp"
+        android:layout_gravity="bottom"
+        android:background="@color/colorPrimaryDark"
+        android:textColor="#ffffff"
+        android:id="@+id/btnSubmit"
+        android:layout_alignParentBottom="true"/>
+
+
+</RelativeLayout>
