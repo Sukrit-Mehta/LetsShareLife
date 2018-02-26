@@ -22,68 +22,187 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:weightSum="10"
-            android:layout_marginTop="11dp"
-            android:id="@+id/linearLayout">
-
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="0dp"
-                android:layout_height="30dp"
-                android:layout_weight="2"
-                android:layout_marginTop="5dp"
-                android:scaleType="centerCrop"
-                android:src="@mipmap/ic_launcher" />
-
-            <TextView
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="7"
-                android:maxLines="4"
-                android:id="@+id/userDetails"
-                android:text="njksdbfnjksdbfjbdfjbkdsbfbsbfbrkjbfkrjwbfjbfbkjwbfbjfwwfjbdfjbkdsbfbsbfbrkjbfkrjwbfjbfbkjwbfbjfwwf" />
+                android:id="@+id/RequesterName"
+                android:weightSum="9"
+                android:layout_marginTop="6dp"
+                android:orientation="horizontal">
 
-            <ImageView
-                android:layout_width="0dp"
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="0dp"
+                    android:layout_height="32dp"
+                    android:layout_weight="1.53"
+                    android:id="@+id/imageBloodGroup"
+                    android:src="@drawable/circularclock"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="7"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:textColor="#000000"
+                    android:id="@+id/tvRequesterText"/>
+            </LinearLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:background="@android:color/darker_gray"
+                android:layout_marginTop="6dp"
+                android:layout_marginStart="18dp"
+                android:layout_marginEnd="18dp"
+                ></View>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="top"
-                android:layout_marginTop="5dp"
-                android:layout_weight="1"
-                android:id="@+id/action"
-                android:src="@drawable/ic_more_vert_black_24dp" />
-        </LinearLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginTop="5dp"
-            android:layout_marginBottom="5dp"
-            android:layout_marginEnd="3dp"
-            android:layout_marginStart="26dp">
-            <ImageView
-                android:layout_width="20dp"
-                android:layout_height="20dp"
-                android:src="@drawable/circularclock"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Required Upto :"
-            android:textStyle="bold"
-            android:layout_marginStart="24dp"/>
-            <TextView
-                android:layout_width="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="13"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="11dp"
+                android:id="@+id/linearLayout1">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="2"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:id="@+id/userCall"
+                    android:src="@drawable/number" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:layout_gravity="center"
+                    android:text="Number :"
+                    android:textColor="#000000"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:maxLines="1"
+                    android:layout_gravity="center"
+                    android:id="@+id/userNumber"
+                    android:text="8800098999" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/endDate"
-                android:layout_marginStart="5dp"
-                android:text="25th Feb'17" />
-        </LinearLayout>
+                android:orientation="horizontal"
+                android:weightSum="13"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="11dp"
+                android:id="@+id/linearLayout2">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="2"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/address" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:layout_gravity="center"
+                    android:text="Address :"
+                    android:textColor="#000000"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:maxLines="2"
+                    android:layout_gravity="center"
+                    android:id="@+id/userAddress"
+                    android:text="Your Address goes here." />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="13"
+                android:visibility="gone"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="11dp"
+                android:id="@+id/linearLayout3">
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="2"
+                    android:layout_gravity="center"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/circularclock" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2.5"
+                    android:layout_gravity="center"
+                    android:text="Message:"
+                    android:textColor="#000000"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:maxLines="4"
+                    android:layout_gravity="center"
+                    android:id="@+id/userMessage"
+                    android:text="Your message goes here." />
+
+                    </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:weightSum="13"
+                android:layout_marginStart="9dp"
+                android:layout_marginTop="11dp"
+                android:id="@+id/linearLayout4">
+
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="30dp"
+                    android:layout_weight="2"
+                    android:layout_gravity="center"
+                    android:src="@drawable/date"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="3.8"
+                    android:layout_gravity="center"
+                    android:text="Required Upto :"
+                    android:textColor="#000000"/>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="8"
+                    android:maxLines="2"
+                    android:layout_gravity="center"
+                    android:id="@+id/endDate"
+                    android:text="20-12-2001" />
+
+            </LinearLayout>
+
+
         <View
             android:layout_width="match_parent"
             android:layout_height="2dp"
+            android:layout_marginStart="18dp"
+            android:layout_marginEnd="18dp"
             android:background="@android:color/darker_gray"
             android:layout_marginTop="4dp">
         </View>
@@ -109,6 +228,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="7dp"
+                    android:textSize="16sp"
                     android:text="Drop In"/>
             </LinearLayout>
             <LinearLayout
@@ -124,22 +245,9 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="7dp"
+                    android:textSize="16sp"
                     android:text="Raise"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
-                android:id="@+id/linShare">
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/ic_menu_share"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:text="Share"/>
             </LinearLayout>
 
         </LinearLayout>

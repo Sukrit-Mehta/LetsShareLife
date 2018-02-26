@@ -1,10 +1,14 @@
 package com.example.medicinereminder.lifeshare.Activities;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.TabLayout;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.widget.DrawerLayout;
@@ -31,55 +35,80 @@ public class HomeActivity extends AppCompatActivity
     DatabaseReference mDatabaseNeeds,mDatabaseUsers;
     String uid,bloodGroup;
     FirebaseAuth mAuth;
+    public static final int  REQUEST_CODE_ASK_PERMISSIONS = 1234;
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if(requestCode==REQUEST_CODE_ASK_PERMISSIONS)
+        {
+            if(grantResults[0]== PackageManager.PERMISSION_GRANTED)
+            {
+                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
+                        != PackageManager.PERMISSION_GRANTED ) {
+                    return;
+                }
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        mAuth = FirebaseAuth.getInstance();
-        uid = mAuth.getCurrentUser().getUid().toString();
-
-        mDatabaseNeeds = FirebaseDatabase.getInstance().getReference().child("Needs");
-        mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
-
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        fabRequestBlood = findViewById(R.id.fabRequestBlood);
-        fabDonateBlood = findViewById(R.id.fabDonateBlood);
-
-        fabRequestBlood.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(HomeActivity.this,RequestBloodActivity.class);
-                intent.putExtra("id",uid);
-                startActivity(intent);
+        if (ActivityCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+            {
+                ActivityCompat
+                        .requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CODE_ASK_PERMISSIONS);
             }
-        });
+        }
 
-        fabDonateBlood.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+            mAuth = FirebaseAuth.getInstance();
+            uid = mAuth.getCurrentUser().getUid().toString();
 
-            }
-        });
+            mDatabaseNeeds = FirebaseDatabase.getInstance().getReference().child("Needs");
+            mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users").child(uid);
 
-        viewPager = findViewById(R.id.viewPager);
-        viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
-        viewPager.setAdapter(viewPagerAdapter);
-        tabLayout = findViewById(R.id.tabs);
-        tabLayout.setupWithViewPager(viewPager);
+            mDatabaseNeeds.keepSynced(true);
+            mDatabaseUsers.keepSynced(true);
+            Toolbar toolbar = findViewById(R.id.toolbar);
+            setSupportActionBar(toolbar);
+
+            fabRequestBlood = findViewById(R.id.fabRequestBlood);
+            fabDonateBlood = findViewById(R.id.fabDonateBlood);
+
+            fabRequestBlood.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(HomeActivity.this, RequestBloodActivity.class);
+                    intent.putExtra("id", uid);
+                    startActivity(intent);
+                }
+            });
+
+            fabDonateBlood.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+                }
+            });
+
+            viewPager = findViewById(R.id.viewPager);
+            viewPagerAdapter = new ViewPagerAdapter(getSupportFragmentManager());
+            viewPager.setAdapter(viewPagerAdapter);
+            tabLayout = findViewById(R.id.tabs);
+            tabLayout.setupWithViewPager(viewPager);
 
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
+            DrawerLayout drawer = findViewById(R.id.drawer_layout);
+            ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
+                    this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+            drawer.addDrawerListener(toggle);
+            toggle.syncState();
 
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+            NavigationView navigationView = findViewById(R.id.nav_view);
+            navigationView.setNavigationItemSelectedListener(this);
     }
 
     @Override
@@ -108,6 +137,11 @@ public class HomeActivity extends AppCompatActivity
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            FirebaseAuth.getInstance().signOut();
+            Intent intent = new Intent(HomeActivity.this,LoginActivity.class);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+            startActivity(intent);
+            finish();
             return true;
         }
 

@@ -5,16 +5,35 @@ package com.example.medicinereminder.lifeshare.Models;
  */
 
 public class Request {
-    String requestedBloodUnits,receiverBloodGroup,endDate,completed;
+    String requestedBloodUnits,receiverBloodGroup,endDate,completed,gender,bloodFor;
 
     public Request() {
     }
 
-    public Request(String requestedBloodUnits, String receiverBloodGroup, String endDate, String completed) {
+    public Request(String requestedBloodUnits, String receiverBloodGroup, String endDate, String completed,
+                   String gender, String bloodFor) {
         this.requestedBloodUnits = requestedBloodUnits;
         this.receiverBloodGroup = receiverBloodGroup;
         this.endDate = endDate;
         this.completed = completed;
+        this.gender = gender;
+        this.bloodFor = bloodFor;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getBloodFor() {
+        return bloodFor;
+    }
+
+    public void setBloodFor(String bloodFor) {
+        this.bloodFor = bloodFor;
     }
 
     public String getRequestedBloodUnits() {

@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 
 import com.example.medicinereminder.lifeshare.R;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class SplashScreenActivity extends AppCompatActivity {
 
@@ -17,13 +18,18 @@ public class SplashScreenActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-
-
         final Handler handler=new Handler();
         Runnable runnable=new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this,LoginActivity.class);
+                Intent intent;
+                if(FirebaseAuth.getInstance().getCurrentUser()==null) {
+                    intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+
+                }
+                else {
+                    intent = new Intent(SplashScreenActivity.this, HomeActivity.class);
+                }
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                 startActivity(intent);
                 finish();

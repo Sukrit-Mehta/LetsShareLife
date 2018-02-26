@@ -5,12 +5,13 @@ package com.example.medicinereminder.lifeshare.Models;
  */
 
 public class Needs {
-    String name,address,number,bloodGroup,hospitalAddress,bloodUnits,uid,datePosted,endDate;
+    String name,address,number,bloodGroup,hospitalAddress,
+            bloodUnits,uid,datePosted,endDate,message,gender,requestFor;
 
     public Needs() {
     }
 
-    public Needs(String name, String address, String number, String bloodGroup, String hospitalAddress, String bloodUnits, String uid, String datePosted, String endDate)
+    public Needs(String name, String address, String number, String bloodGroup, String hospitalAddress, String bloodUnits, String uid, String datePosted, String endDate, String message, String gender, String requestFor)
     {
         this.name = name;
         this.address = address;
@@ -21,6 +22,33 @@ public class Needs {
         this.bloodGroup=bloodGroup;
         this.datePosted=datePosted;
         this.endDate=endDate;
+        this.message = message;
+        this.gender=gender;
+        this.requestFor=requestFor;
+    }
+
+    public String getRequestFor() {
+        return requestFor;
+    }
+
+    public void setRequestFor(String requestFor) {
+        this.requestFor = requestFor;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
     }
 
     public String getDatePosted() {

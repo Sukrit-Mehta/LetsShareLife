@@ -44,10 +44,12 @@ public class FirstFragment extends Fragment {
 
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         firstRV.setLayoutManager(linearLayoutManager);
-    /*    linearLayoutManager.setReverseLayout(true);
-        linearLayoutManager.setStackFromEnd(true);*/
+
+        //Offline Data
 
         mDatabaseRequests = FirebaseDatabase.getInstance().getReference().child("Needs");
+        mDatabaseRequests.keepSynced(true);
+
         final ArrayList<Needs> arrayList = new ArrayList<>();
         mDatabaseRequests.addValueEventListener(new ValueEventListener() {
             @Override

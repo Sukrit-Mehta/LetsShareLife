@@ -47,6 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.keepSynced(true);
 
         tvName = findViewById(R.id.reg_display_name);
         tvEmail = findViewById(R.id.login_email);
@@ -84,6 +85,7 @@ public class RegisterActivity extends AppCompatActivity {
                             uid = firebaseUser.getUid();
                             deviceToken = FirebaseInstanceId.getInstance().getToken();
                             mUserDatabase = mDatabase.child("Users").child(uid);
+                            mUserDatabase.keepSynced(true);
 
                             UserDetails userDetails = new UserDetails(name,email,address,address,
                                                         bloodGroup,password,deviceToken,donationCount,

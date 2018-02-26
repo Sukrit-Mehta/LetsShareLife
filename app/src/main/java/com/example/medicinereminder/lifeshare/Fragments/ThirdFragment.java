@@ -48,6 +48,8 @@ public class ThirdFragment extends Fragment {
         thirdRV.setLayoutManager(layoutManager);
         final ArrayList<User> arrayList = new ArrayList<>();
         mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
+        mDatabaseUsers.keepSynced(true);
+
         mDatabaseUsers.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {

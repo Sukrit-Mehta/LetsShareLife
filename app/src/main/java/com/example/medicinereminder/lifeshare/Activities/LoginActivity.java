@@ -26,7 +26,7 @@ public class LoginActivity extends AppCompatActivity {
     TextInputLayout mLoginEmail,mLoginPassword;
     Button mLoginBtn;
     ProgressDialog mLoginProgress;
-    DatabaseReference mDatabase,mUserDatabase;
+    DatabaseReference mUserDatabase;
     FirebaseAuth mAuth;
 
     @Override
@@ -34,8 +34,10 @@ public class LoginActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
-        mDatabase= FirebaseDatabase.getInstance().getReference().child("Users");
+        mUserDatabase= FirebaseDatabase.getInstance().getReference().child("Users");
         mAuth = FirebaseAuth.getInstance();
+
+        mUserDatabase.keepSynced(true);
 
         tvSignUp = findViewById(R.id.signUp);
         tvForgotPwd = findViewById(R.id.forgotPwd);
