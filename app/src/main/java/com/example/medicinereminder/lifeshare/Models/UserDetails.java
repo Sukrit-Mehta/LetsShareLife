@@ -10,13 +10,18 @@ import java.util.Map;
 public class UserDetails
 {
     String name,email,address,hospitalAddress,bloodGroup,password,deviceToken,donationCount,
-        receivedCount,donatedTo,receivedFrom;
+        receivedCount,donatedTo,receivedFrom,imageUri;
         ArrayList<Map<String,Request>> requests;
 
     public UserDetails() {
     }
 
-    public UserDetails(String name, String email, String address, String hospitalAddress, String bloodGroup, String password, String deviceToken, String donationCount, String receivedCount, String donatedTo, String receivedFrom, ArrayList<Map<String, Request>> requests) {
+    public UserDetails(String name, String email, String address,
+                       String hospitalAddress, String bloodGroup,
+                       String password, String deviceToken,
+                       String donationCount, String receivedCount,
+                       String donatedTo, String receivedFrom,
+                       ArrayList<Map<String, Request>> requests,String imageUri) {
         this.name = name;
         this.email = email;
         this.address = address;
@@ -29,6 +34,15 @@ public class UserDetails
         this.donatedTo = donatedTo;
         this.receivedFrom = receivedFrom;
         this.requests = requests;
+        this.imageUri = imageUri;
+    }
+
+    public String getImageUri() {
+        return imageUri;
+    }
+
+    public void setImageUri(String imageUri) {
+        this.imageUri = imageUri;
     }
 
     public String getName() {

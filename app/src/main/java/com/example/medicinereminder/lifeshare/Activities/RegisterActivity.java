@@ -90,7 +90,7 @@ public class RegisterActivity extends AppCompatActivity {
                             UserDetails userDetails = new UserDetails(name,email,address,address,
                                                         bloodGroup,password,deviceToken,donationCount,
                                                         receivedCount,"default",
-                                                        "default",arrayList);
+                                                        "default",arrayList,"default");
 
                             mUserDatabase.setValue(userDetails)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -98,8 +98,7 @@ public class RegisterActivity extends AppCompatActivity {
                                         public void onComplete(@NonNull Task<Void> task) {
                                             if (task.isSuccessful()) {
                                                 String current_user_id=mAuth.getCurrentUser().getUid();
-                                                String deviceToken= FirebaseInstanceId.getInstance().getToken();
-                                                mUserDatabase.child("device_token").setValue(deviceToken);
+
                                                 Toast.makeText(RegisterActivity.this, "You have successfully registered", Toast.LENGTH_SHORT).show();
                                                 Intent mainIntent = new Intent(RegisterActivity.this, HomeActivity.class);
                                                 mainIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

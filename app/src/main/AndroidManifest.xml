@@ -3,7 +3,9 @@
     package="com.example.medicinereminder.lifeshare">
 
     <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.CALL_PHONE"></uses-permission>
+    <uses-permission android:name="android.permission.CALL_PHONE"/>
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:name=".Activities.LifeShare"
@@ -29,6 +31,10 @@
         <activity android:name=".Activities.RequestBloodActivity"
             android:parentActivityName=".Activities.HomeActivity"/>
         <activity android:name=".Activities.MatchingBloodActivity" />
+        <activity
+            android:name="com.theartofdev.edmodo.cropper.CropImageActivity"
+            android:theme="@style/Base.Theme.AppCompat" /> <!-- optional (needed if default theme has no action bar) -->
+
     </application>
 
 </manifest>
