@@ -78,8 +78,10 @@ public class HomeActivity extends AppCompatActivity
         {
             if(grantResults[0]== PackageManager.PERMISSION_GRANTED)
             {
-                if (ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
-                        != PackageManager.PERMISSION_GRANTED ) {
+                if ((ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
+                        != PackageManager.PERMISSION_GRANTED )||
+                        (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
+                                != PackageManager.PERMISSION_GRANTED )) {
                     return;
                 }
             }
@@ -92,10 +94,15 @@ public class HomeActivity extends AppCompatActivity
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        if (ActivityCompat.checkSelfPermission(HomeActivity.this, Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED) {
+        if ((ActivityCompat.checkSelfPermission(HomeActivity.this,
+                Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)||(ActivityCompat.checkSelfPermission(HomeActivity.this,
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
             {
                 ActivityCompat
-                        .requestPermissions(this, new String[]{Manifest.permission.CALL_PHONE}, REQUEST_CODE_ASK_PERMISSIONS);
+                        .requestPermissions(this, new String[]
+                                {Manifest.permission.CALL_PHONE,
+                                        Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                REQUEST_CODE_ASK_PERMISSIONS);
             }
         }
 
@@ -121,7 +128,6 @@ public class HomeActivity extends AppCompatActivity
         navUserEmail = headerView.findViewById(R.id.userEmail);
 
             fabRequestBlood = findViewById(R.id.fabRequestBlood);
-            fabDonateBlood = findViewById(R.id.fabDonateBlood);
 
             mDatabaseUsers.addValueEventListener(new ValueEventListener() {
                 @Override
@@ -156,13 +162,6 @@ public class HomeActivity extends AppCompatActivity
                     Intent intent = new Intent(HomeActivity.this, RequestBloodActivity.class);
                     intent.putExtra("id", uid);
                     startActivity(intent);
-                }
-            });
-
-            fabDonateBlood.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-
                 }
             });
 

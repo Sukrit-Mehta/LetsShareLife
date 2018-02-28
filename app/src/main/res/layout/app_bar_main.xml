@@ -26,20 +26,8 @@
         android:layout_width="60dp"
         android:layout_height="60dp"
         app:backgroundTint="#ffffff"
-        android:backgroundTint="#ffffff"
         android:layout_margin="15dp"
-
         android:layout_gravity="bottom|end"
         app:srcCompat="@drawable/blooddonation" />
-    <android.support.design.widget.FloatingActionButton
-        android:id="@+id/fabDonateBlood"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:visibility="gone"
-        android:layout_margin="5dp"
-        app:backgroundTint="#ffffff"
-        android:backgroundTint="#ffffff"
-        android:layout_gravity="bottom|start"
-        app:srcCompat="@drawable/circularclock" />
 
 </android.support.design.widget.CoordinatorLayout>
