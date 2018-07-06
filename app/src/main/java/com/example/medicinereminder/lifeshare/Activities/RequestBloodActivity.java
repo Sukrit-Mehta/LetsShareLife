@@ -19,12 +19,16 @@ import android.widget.Toast;
 
 import com.example.medicinereminder.lifeshare.Models.Needs;
 import com.example.medicinereminder.lifeshare.Models.Request;
+import com.example.medicinereminder.lifeshare.Models.UserDetails;
 import com.example.medicinereminder.lifeshare.R;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class RequestBloodActivity extends AppCompatActivity {
 
@@ -40,6 +44,7 @@ public class RequestBloodActivity extends AppCompatActivity {
     RadioGroup radioGroup1,radioGroup2;
     String bloodFor,gender;
     RadioButton rb1,rb2;
+    UserDetails userDetails;
 
     @SuppressLint("RestrictedApi")
     @Override
@@ -47,10 +52,14 @@ public class RequestBloodActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_request_blood);
 
+        name = "";
         toolbar = findViewById(R.id.requestToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setTitle("Request Blood");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        etName = findViewById(R.id.etName);
+        etAddress = findViewById(R.id.etAddress);
 
         Spinner spinner = findViewById(R.id.spinnerBloodGroup);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,
@@ -70,15 +79,42 @@ public class RequestBloodActivity extends AppCompatActivity {
                 }
             });
 
-            mDatabaseNeeds = FirebaseDatabase.getInstance().getReference().child("Needs");
+        initializeViews();
+        uid = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
+
+        mDatabaseNeeds = FirebaseDatabase.getInstance().getReference().child("Needs");
             mDatabaseUsers = FirebaseDatabase.getInstance().getReference().child("Users");
+            mDatabaseUsers.child(uid).child("name").addValueEventListener(new ValueEventListener() {
+                @Override
+                public void onDataChange(DataSnapshot dataSnapshot) {
+                    name = dataSnapshot.getValue().toString();
+                    etName.setText(name);
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+        mDatabaseUsers.child(uid).child("address").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                address = dataSnapshot.getValue().toString();
+                etAddress.setText(address);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+        Log.d("BLOOD", "onCreate: "+name);
+
 
             mDatabaseNeeds.keepSynced(true);
             mDatabaseUsers.keepSynced(true);
 
-            uid = FirebaseAuth.getInstance().getCurrentUser().getUid().toString();
 
-            initializeViews();
 
             radioGroup1 = (RadioGroup) findViewById(R.id.radioGroup1);
             radioGroup2 = (RadioGroup) findViewById(R.id.radioGroup2);

@@ -26,6 +26,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ViewFlipper;
 
 import com.bumptech.glide.Glide;
 import com.example.medicinereminder.lifeshare.Adapters.ViewPagerAdapter;
@@ -71,6 +72,7 @@ public class HomeActivity extends AppCompatActivity
     TextView navUserName;
     TextView navUserEmail;
     String uName,uEmail;
+    ViewFlipper viewFlipper;
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
@@ -127,9 +129,14 @@ public class HomeActivity extends AppCompatActivity
         navUserName = headerView.findViewById(R.id.userName);
         navUserEmail = headerView.findViewById(R.id.userEmail);
 
-            fabRequestBlood = findViewById(R.id.fabRequestBlood);
+        viewFlipper = findViewById(R.id.viewFlipper);
+        viewFlipper.setAutoStart(true);
+        viewFlipper.setFlipInterval(5500);
+        viewFlipper.startFlipping();
 
-            mDatabaseUsers.addValueEventListener(new ValueEventListener() {
+        fabRequestBlood = findViewById(R.id.fabRequestBlood);
+
+        mDatabaseUsers.addValueEventListener(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     imagePath = dataSnapshot.child("image").getValue().toString();

@@ -82,7 +82,7 @@
             android:textSize="18sp"
             android:textColor="#000000"
             android:background="@drawable/border"
-            android:hint="First Name"
+            android:hint="Name"
             android:padding="9dp" />
 
         <EditText
@@ -94,6 +94,7 @@
             android:layout_marginStart="4dp"
             android:textSize="18sp"
             android:padding="9dp"
+            android:visibility="gone"
             android:background="@drawable/border"
             android:hint="Last Name"/>
 

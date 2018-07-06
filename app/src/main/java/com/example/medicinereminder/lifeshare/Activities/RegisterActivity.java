@@ -35,6 +35,7 @@ public class RegisterActivity extends AppCompatActivity {
     String uid, deviceToken;
     Button mCreateButton;
 
+
     ProgressDialog progressDialog;
     ArrayList<Map<String,Request>> arrayList;
 
@@ -45,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity {
 
         arrayList=new ArrayList<>();
 
+        bloodGroup = "O+";
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.keepSynced(true);
