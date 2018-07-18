@@ -53,7 +53,8 @@ import java.io.InputStream;
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class HomeActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener
+       {
 
     ViewPagerAdapter viewPagerAdapter;
     ViewPager viewPager;
@@ -83,8 +84,12 @@ public class HomeActivity extends AppCompatActivity
                 if ((ActivityCompat.checkSelfPermission(this, Manifest.permission.CALL_PHONE)
                         != PackageManager.PERMISSION_GRANTED )||
                         (ActivityCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
-                                != PackageManager.PERMISSION_GRANTED )) {
+                                != PackageManager.PERMISSION_GRANTED )
+                    ||(ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION)
+                        != PackageManager.PERMISSION_GRANTED )) {
                     return;
+                }
+                else {
                 }
             }
         }
@@ -98,12 +103,15 @@ public class HomeActivity extends AppCompatActivity
 
         if ((ActivityCompat.checkSelfPermission(HomeActivity.this,
                 Manifest.permission.CALL_PHONE) != PackageManager.PERMISSION_GRANTED)||(ActivityCompat.checkSelfPermission(HomeActivity.this,
-                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)) {
+                Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED)||
+                (ActivityCompat.checkSelfPermission(HomeActivity.this,
+                        Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED)) {
             {
                 ActivityCompat
                         .requestPermissions(this, new String[]
                                 {Manifest.permission.CALL_PHONE,
-                                        Manifest.permission.WRITE_EXTERNAL_STORAGE},
+                                        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                                        Manifest.permission.ACCESS_FINE_LOCATION},
                                 REQUEST_CODE_ASK_PERMISSIONS);
             }
         }
@@ -119,6 +127,8 @@ public class HomeActivity extends AppCompatActivity
             mDatabaseUsers.keepSynced(true);
             Toolbar toolbar = findViewById(R.id.toolbar);
             setSupportActionBar(toolbar);
+
+
 
 
         NavigationView navigationView = findViewById(R.id.nav_view);
@@ -144,8 +154,7 @@ public class HomeActivity extends AppCompatActivity
                     uEmail = dataSnapshot.child("email").getValue().toString();
                     navUserName.setText(uName);
                     navUserEmail.setText(uEmail);
-                    if(imagePath.equals("default"))
-                    {
+                    if(imagePath.equals("default")) {
                         profileImage.setImageResource(R.drawable.circularclock);
                     }
                     else {
@@ -343,4 +352,6 @@ public class HomeActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
 }

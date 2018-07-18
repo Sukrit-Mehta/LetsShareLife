@@ -47,7 +47,7 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
             case 0:
                 return "Required";
             case 1:
-                return "Activity";
+                return "Hospitals";
             case 2:
                 return "Users";
             default:
